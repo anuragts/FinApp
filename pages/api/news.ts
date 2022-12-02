@@ -1,15 +1,22 @@
 import type{NextApiRequest, NextApiResponse} from 'next';
+import { config } from 'dotenv';
+
+config();
+
+const apikey = process.env.API_KEY;
+const host = process.env.HOST;
 
 export default async (req:NextApiRequest,res:NextApiResponse) => {
-    const response = await fetch('https://bloomberg-market-and-financial-news.p.rapidapi.com/market/auto-complete?query="tesla"', {
+    const {company} = req.body;
+    const response = await fetch(`https://bloomberg-market-and-financial-news.p.rapidapi.com/market/auto-complete?query="${company}"`, {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '38c2c4fa9dmsh373af5705c9126fp1f3898jsnf68f63996b25',
-            'X-RapidAPI-Host': 'bloomberg-market-and-financial-news.p.rapidapi.com'
-        }        
+            'X-RapidAPI-Key': `${apikey}`,
+            'X-RapidAPI-Host': `${host}`
+                }        
     })
     const data = await response.json();
-    const r = data.news[2].title;
-    console.log(r);
-    res.status(200).json(r);
+    // const r = data.news[2].title;
+    // console.log(r);
+    res.status(200).json(data);
 }
