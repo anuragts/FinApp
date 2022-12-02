@@ -57,7 +57,7 @@ export default function Home() {
             {loading? <h1>Loading...</h1> :null}
             {data.map((item) => ( 
               <div className="mt-10 text-center">
-                <h1 className="text-2xl">{item.title}</h1>
+                <h1 className="text-2xl">{item.title  }</h1>
                 <a href={item.longURL}>Visit</a>
                 </div>))
                 }
