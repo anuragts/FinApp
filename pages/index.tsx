@@ -51,15 +51,16 @@ export default function Home() {
               type="submit"
               className="bg-third text-base md:text-xl  text-secondary mt-10 rounded  px-8 md:px-10 py-2 md:my-4 my-2 hover:bg-secondary hover:text-third border-2 border-third">
               Submit
-              </button>
+            </button>
           </form>
           <div>
             {loading? <h1>Loading...</h1> :null}
-            {data.map((item) => ( 
+            {data && data.length > 0 && data.map((item) => ( 
               <div className="mt-10 text-center">
-                <h1 className="text-2xl">{item.title  }</h1>
+                <h1 className="text-2xl">{item.title}</h1>
                 <a href={item.longURL}>Visit</a>
-                </div>))
+                </div>
+                ))
                 }
           </div>
         </div>
