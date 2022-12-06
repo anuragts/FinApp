@@ -3,7 +3,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  interface IData {
+  title: string
+  longURL: string
+}
+  const [data, setData] = useState<IData[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
